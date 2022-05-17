@@ -1,4 +1,4 @@
-function audiosave(data, file, extention, value)
+function audiosave(data, file, OutPath, extention, value)
 %AUDIOSAVE() is a combination of several audiowriters.
 %   It supports .WAV .FLAC .MP3 .M4A .OGG .OGA types. AAC files will be
 %   converted into MP3 format automatically if another output extention
@@ -26,7 +26,7 @@ function audiosave(data, file, extention, value)
 %
 %   Kadir Tekeli (kadir.tekeli@outlook.com)
 
-if nargin > 2
+if nargin > 3
     if ~isempty(strfind('.wav.flac', extention))
         file.ext = extention; file.nbit = value;
     elseif ~isempty(strfind('.mp3.m4a.aac', extention))
@@ -42,11 +42,11 @@ type1 = '*.wav;'; type2 = '*.flac;'; type3 = '*.mp3;';
 type4 = '*.aac; *.m4a;'; type5 = '*.ogg; *.oga';
 m4abrate = [96 128 160 192];
 
-if ~exist('audio_out/')
-    mkdir('audio_out');
+if ~exist(OutPath)
+    mkdir(OutPath);
 end
 
-sName = ['audio_out/',file.name,'_stego',file.ext];
+sName = [OutPath,file.name,file.ext];
 
 if ~isempty(strfind(type1, file.ext))
 	audiowrite(sName, data, file.fs);
@@ -151,7 +151,7 @@ lame = fullfile(path,['/mp3bin/lame.',ext]);
 mynargin = nargin;
 if ischar(NBITS)
   % NBITS is a string i.e. it's actually the filename
-  if mynargin > 3
+  if mynargin > 4
     OPTIONS = FILE;
   end
   FILE = NBITS;
@@ -160,7 +160,7 @@ if ischar(NBITS)
   mynargin = mynargin + 1;
 end
 
-if mynargin < 5
+if mynargin < 6
   OPTIONS = '--quiet -h';  % -h means high-quality psych model
 end
 

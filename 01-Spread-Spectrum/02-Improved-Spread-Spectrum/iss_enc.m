@@ -1,4 +1,4 @@
-function out = iss_enc(signal, text, L_min, alpha, beta, gama)
+function out = iss_enc(signal, text, password, L_min, alpha, beta, gama)
 %ISS_ENC is the function to hide data within audio using Improved
 %   Spread Spectrum technique in time domain. 
 %
@@ -16,11 +16,11 @@ function out = iss_enc(signal, text, L_min, alpha, beta, gama)
 %   Kadir Tekeli (kadir.tekeli@outlook.com)
 
 
-if nargin < 3
+if nargin < 4
     L_min = 1024;  % Setting a minimum value for segment length
 end
 
-if nargin < 4
+if nargin < 5
     alpha = 0.005; beta = 1; gama = 0.5;
 end
 
@@ -39,8 +39,8 @@ else
     bits=[bit, num2str(zeros(N-length(bit),1))'];
 end
 
-r = ones(L,1);
-%r  = prng('password123',L);
+% r = ones(L,1);
+r  = prng(password,L);
 pr = reshape(r*ones(1,N),N*L,1);
 u  = alpha * pr;
 

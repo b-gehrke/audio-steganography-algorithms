@@ -1,13 +1,16 @@
-#!/bin/sh
-if [ -z $1 ]; then
-	echo "Usage: $0 <audio-in-path ...>"
+#!/bin/bash
+if [ -z $1 ] || [ -z $2 ]; then
+	echo "Usage: $0 <textfile> <password> <outpath> <audio-in-path ...>"
 	exit 1
 fi
 
-file=$(basename "$1")
-filepath=$(realpath $(dirname "$1"))
+textfile=$1
+password=$2
+outpath=$3
+infiles=${@:4}
 
-for f in $@; do
+
+for f in $infiles; do
 	file=$(basename "$f")
 	filepath=$(realpath $(dirname "$f"))
 
@@ -16,7 +19,7 @@ for f in $@; do
 done;
 vars="[$vars]"
 
-program="input = $vars; for v = input; data_embedding(v{1}, v{2}); end; exit";
+program="input = $vars; for v = input; data_embedding(v{1}, v{2}, '$textfile', '$password', '$outpath'); end; exit";
 echo "Executing MatLab Progam:\n\n$program\n\n"
 
 matlab -nodisplay -r "$program"

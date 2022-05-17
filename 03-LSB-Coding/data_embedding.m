@@ -1,16 +1,10 @@
-close all; clear all; clc;
+function file = data_embedding(FileName, PathName, Text, Password, OutPath)
 
-[FileName,PathName] = uigetfile({'.wav'}, 'Select cover audio:');
+% [FileName,PathName] = uigetfile({'.wav'}, 'Select cover audio:');
 [file.path,file.name,file.ext] = fileparts([PathName FileName]);
 
 wavin = [PathName FileName];
-wavout = [file.path '\' file.name '_stego' file.ext];
+wavout = [OutPath '/' file.name file.ext];
 
-password = 'mypassword123';
 
-file = 'text.txt';
-fid  = fopen(file, 'r');
-text = fread(fid,'*char')';
-fclose(fid);
-
-lsb_enc(wavin, wavout, text, password);
+lsb_enc(wavin, wavout, Text, Password);

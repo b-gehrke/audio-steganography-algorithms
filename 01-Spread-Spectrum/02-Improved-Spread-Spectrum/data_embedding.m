@@ -1,13 +1,12 @@
-function file = data_embedding(FileName, PathName)
+function file = data_embedding(FileName, PathName, TextFile, Password, OutPath)
 
 % close all; clear all; clc;
 
 audio = audioload(FileName, PathName);
 
-file = 'text.txt';
-fid  = fopen(file, 'r');
+fid  = fopen(TextFile, 'r');
 text = fread(fid,'*char')';
 fclose(fid);
 
-out = iss_enc(audio.data, text);
-audiosave(out, audio, '.mp3', 128);
+out = iss_enc(audio.data, text, Password);
+audiosave(out, audio, OutPath, '.mp3', 128);

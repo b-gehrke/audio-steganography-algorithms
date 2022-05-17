@@ -1,4 +1,4 @@
-function out = dsss_enc(signal, text, L_min, graf)
+function out = dsss_enc(signal, text, password, L_min, graf)
 %DSSS_ENC is the function to hide data in audio using "conventional"
 %   Direct Sequence Spread Spectrum technique in time domain. 
 %
@@ -13,11 +13,11 @@ function out = dsss_enc(signal, text, L_min, graf)
 %
 %   Kadir Tekeli (kadir.tekeli@outlook.com)
 
-if nargin < 3
+if nargin < 4
     L_min = 8*1024;  %Setting a minimum value for segment length
 end
 
-if nargin < 4
+if nargin < 5
     graf = 1;
 end
 
@@ -36,7 +36,8 @@ else
 end
 
 %Note: Choose r = prng('password', L) to use a pseudo random sequence
-r = ones(L,1);
+r = password
+% r = ones(L,1);
 %r = prng('password', L);                %Generating pseudo random sequence
 pr = reshape(r * ones(1,N), N*L, 1);  %Extending size of r up to N*L
 alpha = 0.005;                          %Embedding strength
