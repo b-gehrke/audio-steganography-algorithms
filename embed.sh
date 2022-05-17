@@ -19,5 +19,6 @@ vars="[$vars]"
 program="input = $vars; for v = input; data_embedding(v{1}, v{2}); end; exit";
 echo "Executing MatLab Progam:\n\n$program\n\n"
 
-# matlab -nodisplay -r "$program"
-octave --eval "$program" -p $(pwd)
+matlab -nodisplay -r "$program"
+# Octave appears not to be able to run .p files
+# octave --eval "$program" -p $(pwd)
