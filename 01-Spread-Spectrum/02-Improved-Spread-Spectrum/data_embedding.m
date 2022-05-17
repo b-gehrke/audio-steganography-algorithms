@@ -1,6 +1,8 @@
-close all; clear all; clc;
+function file = data_embedding(FileName, PathName)
 
-audio = audioload();
+% close all; clear all; clc;
+
+audio = audioload(FileName, PathName);
 
 file = 'text.txt';
 fid  = fopen(file, 'r');
