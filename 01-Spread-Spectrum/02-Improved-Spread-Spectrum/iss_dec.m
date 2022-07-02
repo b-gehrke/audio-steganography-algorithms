@@ -25,7 +25,7 @@ N = nframe - mod(nframe, 8);
 xsig = reshape(s.data(1:N*L,1), L, N);  %Divide audio signal into segments
 
 r = ones(L,1);
-%r = prng('password123', L);       %Generating same pseudo random sequence
+r = prng('asd', L);       %Generating same pseudo random sequence
 
 data = num2str(zeros(N,1))';
 for k=1:N  

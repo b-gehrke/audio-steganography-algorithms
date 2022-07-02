@@ -19,7 +19,7 @@ for f in $infiles; do
 done;
 vars="[$vars]"
 
-program="input = $vars; for v = input; data_embedding(v{1}, v{2}, '$textfile', '$password', '$outpath'); end; exit";
+program="input = $vars; for v = input; fprintf('embeding in file name: %s, file path: %s\n', v{1}, v{2}); data_embedding(v{1}, v{2}, '$textfile', '$password', '$outpath'); end; exit";
 echo "Executing MatLab Progam:\n\n$program\n\n"
 
 matlab -nodisplay -r "$program"

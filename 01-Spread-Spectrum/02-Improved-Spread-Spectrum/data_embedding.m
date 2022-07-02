@@ -2,6 +2,7 @@ function file = data_embedding(FileName, PathName, TextFile, Password, OutPath)
 
 % close all; clear all; clc;
 
+% audio = audioload(FileName, PathName);
 audio = audioload(FileName, PathName);
 
 fid  = fopen(TextFile, 'r');

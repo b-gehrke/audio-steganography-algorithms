@@ -1,5 +1,6 @@
 close all; clear all; clc;
 
+% audio = audioload("liberty.mp3", "/home/bjoern/study/MediaSec/digitalhistory-stego/");
 audio = audioload();
 
 file = 'text.txt';

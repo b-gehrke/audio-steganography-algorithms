@@ -1,4 +1,5 @@
-function file = audioload(FileName, PathName)
+function file = audioload()
+% function file = audioload(FileName, PathName)
 %AUDIOLOAD() is a combination of several audioreaders.
 %   It supports .WAV .FLAC .MP3 .M4A .AAC .OGG .OGA types. Important
 %   information such as data part, samplerate, bitrate, quality is stored
@@ -11,7 +12,7 @@ message = 'Select audio file.';
 type1 = '*.wav; *.flac;'; type2 = '*.mp3;';
 type3 = '*.m4a; *.aac;'; type4 = '*.ogg; *.oga,';
 
-% [FileName,PathName] = uigetfile({[type1 type2 type3 type4]}, message);
+[FileName,PathName] = uigetfile({[type1 type2 type3 type4]}, message);
 [file.path,file.name,file.ext] = fileparts([PathName FileName]);
 
 if ~isempty(strfind(type1, file.ext))
