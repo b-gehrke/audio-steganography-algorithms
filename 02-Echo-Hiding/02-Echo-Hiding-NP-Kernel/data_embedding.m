@@ -1,11 +1,14 @@
-close all; clear all; clc;
+function file = data_embedding(FileName, PathName, TextFile, Password, OutPath)
 
-audio = audioload();
+% close all; clear all; clc;
 
-file = 'text.txt';
-fid  = fopen(file, 'r');
+audio = audioload(FileName, PathName);
+
+%file = 'text.txt';
+%fid  = fopen(file, 'r');
+fid  = fopen(TextFile, 'r');
 text = fread(fid,'*char')';
 fclose(fid);
 
-out = echo_enc_np(audio.data, text);
-audiosave(out(:,1), audio, '.mp3', 128);
+out = echo_enc_np(audio.data, text, Password);
+audiosave(out(:,1), audio, OutPath, '.mp3', 128);

@@ -20,7 +20,11 @@ done;
 vars="[$vars]"
 
 program="input = $vars; for v = input; fprintf('embeding in file name: %s, file path: %s\n', v{1}, v{2}); data_embedding(v{1}, v{2}, '$textfile', '$password', '$outpath'); end; exit";
-echo "Executing MatLab Progam:\n\n$program\n\n"
+echo "Executing MatLab Progam:
+
+$program
+
+"
 
 matlab -nodisplay -r "$program"
 # Octave appears not to be able to run .p files
